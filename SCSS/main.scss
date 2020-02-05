@@ -1,0 +1,75 @@
+
+// creating partials
+@import './resets';
+@import './variable';
+// creating functions
+@function weight ($weight-name){
+ @return map-get($font-weights, $weight-name);
+}
+// mixin allows you to do :
+@mixin flexCenter($direction) {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true){
+ @if $light-theme{
+  background: lighten($primary-color, 100%);
+  color: darken($text-color, 100%);
+ }
+}
+
+// functions vs mixins: function are to be used to compute values and mixins should define styles
+
+ 
+
+@mixin mobile {
+@media (max-width: $mobile) {
+ @content;
+}
+}
+
+// use the command map-get
+body {
+ background: $primary-color;
+ color: $text-color;
+ 
+}
+
+// nesting #{&}_paragraph = .main_paragraph so #{&} refers to the parent
+.main {
+ @include flexCenter(row);
+ // operations, in normal css calc(80%-40%) in sass:
+ width: 80%-40;
+ margin: 0 auto;
+ 
+ #{&}_paragraph1{
+  font-weight: weight(bold); /*here we use the function "weight" */
+
+  &:hover {
+   color: $hover-color;
+  }
+
+}
+// extend properties from one class to a anpother
+#{&}_paragraph2 {
+ @extend .main_paragraph1;
+ &:hover {
+  color: $accent-color;
+ }
+}
+@include mobile{
+ flex-direction: column;
+ .light {
+ @include theme($light-theme: true);
+}
+}
+}
+
+@include mobile{
+ 
+ .light {
+ @include theme($light-theme: true);
+}}

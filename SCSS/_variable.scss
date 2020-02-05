@@ -1,0 +1,13 @@
+// You can create variables in sass using the $ sign
+ $primary-color: rgb(241, 192, 192);
+ $text-color: rgb(110, 105, 105);
+ $accent-color:rgb(119, 245, 129);
+ $hover-color:rgb(252, 239, 101);
+// mapping is creating key value pairs (make sure you add ; after )
+ $font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700
+ );
+ 
+ $mobile: 800px;
